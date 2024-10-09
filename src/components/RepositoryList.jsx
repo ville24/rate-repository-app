@@ -63,7 +63,7 @@ const RepositoryList = () => {
             data={repositories}
             ItemSeparatorComponent={ItemSeparator}
             renderItem={({item, index, separators}) => (     
-                <RepositoryItem item={item}></RepositoryItem>
+                <RepositoryItem key={item.id} item={item}></RepositoryItem>
             )}
         />
     );
