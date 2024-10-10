@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
     container: {
         paddingTop: theme.padding.default,
         paddingBottom: theme.padding.default,
-        paddingLeft: theme.padding.default,
+        paddingLeft: theme.padding.medium,
+        paddingRight: theme.padding.medium,
     },
     text: {
         color: theme.colors.secondary,
@@ -17,8 +18,8 @@ const styles = StyleSheet.create({
 
 const AppBarTab = ({text, link}) => {
     return (
-        <View style={styles.container}>
-            <Link to={link}>
+        <View>
+            <Link to={link} style={styles.container}>
                 <Text style={styles.text} fontWeight="bold" fontSize="subheading">{text}</Text>
             </Link>
         </View>
