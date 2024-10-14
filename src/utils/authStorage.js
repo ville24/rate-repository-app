@@ -10,13 +10,13 @@ class AuthStorage {
         `${this.namespace}:accessToken`,
       );
   
-      return accessToken ? accessToken : null;
+      return accessToken ? JSON.parse(accessToken) : null;
   }
 
   async setAccessToken(accessToken) {
     await AsyncStorage.setItem(
       `${this.namespace}:accessToken`,
-      accessToken,
+      JSON.stringify(accessToken),
     );
   }
 

@@ -19,10 +19,11 @@ const Main = () => {
   return (
     <View style={styles.container}>
       <AppBar></AppBar>
-      <Routes>
-        <Route path="/" element={<RepositoryList />} />
-        <Route path="/signin" element={<SignIn />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<RepositoryList />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signout" element={<SignIn signout />} />
+        </Routes>
     </View>
   );
 };
