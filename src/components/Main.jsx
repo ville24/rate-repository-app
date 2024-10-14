@@ -15,17 +15,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const handleSignIn = (event) => {
-  console.log(event);
-};
-
 const Main = () => {
   return (
     <View style={styles.container}>
       <AppBar></AppBar>
       <Routes>
         <Route path="/" element={<RepositoryList />} />
-        <Route path="/signin" element={<SignIn onSubmit={handleSignIn} />} />
+        <Route path="/signin" element={<SignIn />} />
       </Routes>
     </View>
   );
