@@ -1,14 +1,15 @@
 import { useNavigate } from 'react-router-native';
-import { View, TextInput, StyleSheet, Pressable } from 'react-native';
+/*import { View, TextInput, StyleSheet, Pressable } from 'react-native';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import Text from './Text';
+import Text from './Text';*/
 
 import useAuthStorage from '../hooks/useAuthStorage';
 import useSignIn from '../hooks/useSignIn';
 import { useApolloClient } from '@apollo/client';
+import SignInContainer from './SignInContainer';
 
-import theme from '../theme';
+/*import theme from '../theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -59,7 +60,7 @@ const validationSchema = yup.object().shape({
   password: yup
   .string()
   .required('Password is required'),
-});
+});*/
 
 const SignIn = ({signout}) => {
   const [signIn] = useSignIn();
@@ -91,7 +92,8 @@ const SignIn = ({signout}) => {
     }
   };
 
-  const formik = useFormik({
+  return <SignInContainer onSubmit={onSubmit} />;
+  /*const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit,
@@ -127,7 +129,7 @@ const SignIn = ({signout}) => {
     >
         <Text style={styles.text} fontWeight="bold" fontSize="subheading">Sign in</Text>
       </Pressable>
-  </View>;
+  </View>;*/
 };
 
 export default SignIn;

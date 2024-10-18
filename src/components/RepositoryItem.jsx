@@ -1,9 +1,13 @@
-import { View, StyleSheet } from 'react-native';
+import * as Linking from 'expo-linking';
+import { View, StyleSheet, Pressable } from 'react-native';
+import { useNavigate } from 'react-router-native';
+
 import Avatar from './Avatar';
 import Title from './Title';
 import Description from './Description';
 import Tag from './Tag';
 import Count from './Count';
+import Text from './Text';
 
 import theme from '../theme';
 
@@ -26,29 +30,75 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
     },
-  });
+    button: {
+        color: theme.colors.secondary,
+        padding: theme.padding.default,
+        marginTop: theme.padding.default,
+        marginBottom: theme.padding.default,
+        borderWidth: 1,
+        borderColor: theme.colors.primary,
+        borderRadius: 5,
+        backgroundColor: theme.colors.primary,
+    },
+        text: {
+        color: theme.colors.secondary,
+        textAlign: 'center',
+    },
+});
 
-const RepositoryItem = (obj) => {
+const RepositoryItem = ({item, single}) => {
+    const navigate = useNavigate();
+
+    const handleNavigate = () => {
+        navigate(`/${item.id}`);
+    }
+
     return (
-        <View style={styles.container}>
-            <View style={styles.flexContainer1}>
-                <Avatar uri={obj.item.ownerAvatarUrl} />
-                <View style={styles.flexContainer2}>
-                    <Title text={obj.item.fullName}></Title>
-                    <Description text={obj.item.description}></Description>
-                    <View style={styles.flexContainer1}>
-                        <Tag labelText={obj.item.language}></Tag>
-                    </View>
+        <>
+            {
+                !single ?
+                    <Pressable onPress={handleNavigate}>
+                        <Item item={item} single={single} />
+                    </Pressable>
+                :
+                    <Item item={item} single={single} />
+            }
+        </>
+    );
+};
+
+const Item = ({item, single}) => {
+    const handleLink = () => {
+        Linking.openURL(item.url);
+    }
+    
+    return <View style={styles.container} testID="repositoryItem">
+        <View style={styles.flexContainer1}>
+            <Avatar uri={item.ownerAvatarUrl} />
+            <View style={styles.flexContainer2}>
+                <Title text={item.fullName}></Title>
+                <Description text={item.description}></Description>
+                <View style={styles.flexContainer1}>
+                    <Tag labelText={item.language}></Tag>
                 </View>
             </View>
-            <View style={styles.flexContainer3}>
-                <Count title='Stars' value={obj.item.stargazersCount}></Count>
-                <Count title='Forks' value={obj.item.forksCount}></Count>
-                <Count title='Reviews' value={obj.item.reviewCount}></Count>
-                <Count title='Rating' value={obj.item.ratingAverage}></Count>
-            </View>
         </View>
-    );
+        <View style={styles.flexContainer3}>
+            <Count title='Stars' value={item.stargazersCount}></Count>
+            <Count title='Forks' value={item.forksCount}></Count>
+            <Count title='Reviews' value={item.reviewCount}></Count>
+            <Count title='Rating' value={item.ratingAverage}></Count>
+        </View>
+        {
+            single && 
+            <Pressable 
+                style={styles.button}
+                onPress={handleLink}
+            >
+                <Text style={styles.text} fontWeight="bold" fontSize="subheading">Open in GitHub</Text>
+            </Pressable>
+        }
+    </View>
 };
   
 export default RepositoryItem;
