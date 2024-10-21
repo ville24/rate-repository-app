@@ -1,9 +1,9 @@
 import { format } from 'date-fns'
 
 import { View, StyleSheet } from 'react-native';
-import Text from './Text';
+import Text from '../Text';
 
-import theme from '../theme';
+import theme from '../../theme';
 
 const styles = StyleSheet.create({
     container: {
@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
         height: 40,
         borderRadius: 20,
         lineHeight: 35,
+        minWidth: 40,
     },
     reviewText: {
         paddingTop: theme.padding.medium,
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
 
 const ReviewItem = ({review}) => <View style={styles.container}>
     <Text style={styles.rating} fontWeight="bold" fontSize="subheading">{review.rating}</Text>
-    <View>
+    <View style={{flex: 1}}>
         <Text fontWeight="bold" >{review.user.username}</Text>
         <Text color="textSecondary">{format(new Date(review.createdAt), 'dd.MM.y')}</Text>
         <Text style={styles.reviewText}>{review.text}</Text>

@@ -2,14 +2,14 @@ import * as Linking from 'expo-linking';
 import { View, StyleSheet, Pressable } from 'react-native';
 import { useNavigate } from 'react-router-native';
 
-import Avatar from './Avatar';
-import Title from './Title';
-import Description from './Description';
-import Tag from './Tag';
-import Count from './Count';
-import Text from './Text';
+import Avatar from '../RepositoryItem/Avatar';
+import Title from '../Title';
+import Description from '../Description';
+import Tag from '../Tag';
+import Count from '../Count';
+import Text from '../Text';
 
-import theme from '../theme';
+import theme from '../../theme';
 
 const styles = StyleSheet.create({
     container: {
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         gap: theme.padding.medium,
     },
     flexContainer2: {
-        flex: 'unset',
+        flex: 1,
         gap: theme.padding.medium,
         paddingLeft: theme.padding.default,
         paddingBottom: theme.padding.medium,

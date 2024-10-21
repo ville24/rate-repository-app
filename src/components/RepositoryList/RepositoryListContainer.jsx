@@ -1,8 +1,8 @@
 import { FlatList, View, StyleSheet } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
 
-import RepositoryItem from './RepositoryItem';
-import OrderMenu from './OrderMenu';
+import RepositoryItem from '../RepositoryItem';
+import OrderMenu from '../OrderMenu';
 
 const styles = StyleSheet.create({
   separator: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-export const RepositoryListContainer = ({ repositories }) => {
+export const RepositoryListContainer = ({ repositories, orderBy, orderDirection, handleOrder }) => {
   const repositoryNodes = repositories
     ? repositories.edges.map(edge => edge.node)
     : [];
@@ -25,7 +25,11 @@ export const RepositoryListContainer = ({ repositories }) => {
             renderItem={({item}) => (     
                 <RepositoryItem key={item.id} item={item}></RepositoryItem>
             )}
-            ListHeaderComponent={() => <OrderMenu />}
+            ListHeaderComponent={() => <OrderMenu 
+              orderBy={orderBy}
+              orderDirection={orderDirection}
+              handleOrder={handleOrder}
+            />}
         />
     </PaperProvider>
   );

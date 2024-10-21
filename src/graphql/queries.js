@@ -3,8 +3,8 @@ import { CORE_REPOSITORY_FIELDS } from './fragments';
 
 export const GET_REPOSITORIES = gql`
   ${CORE_REPOSITORY_FIELDS}
-  query {
-    repositories {
+  query Repositories($orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection) {
+    repositories(orderBy: $orderBy, orderDirection: $orderDirection) {
       edges {
         node {
             ...CoreRepositoryFields
@@ -15,15 +15,16 @@ export const GET_REPOSITORIES = gql`
 `;
 
 export const GET_REPOSITORY = gql`
-  query repository($id: String!) {
-    repository(id: $id) {
+  ${CORE_REPOSITORY_FIELDS}
+  query repository($repositoryId: ID!) {
+    repository(id: $repositoryId) {
       ...CoreRepositoryFields
       reviews {
         edges {
-          nodes {
+          node {
             id
-            text
             rating
+            text
             createdAt
             user {
               id

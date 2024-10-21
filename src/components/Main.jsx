@@ -3,8 +3,8 @@ import { Route, Routes } from 'react-router-native';
 
 import AppBar from './AppBar';
 import RepositoryList from './RepositoryList';
-import RepositorySingleItem from './RepositorySingleItem';
-import CreateReviewForm from './CreateReviewFormContainer';
+import RepositorySingleItem from './RepositoryList/RepositorySingleItem';
+import CreateReviewForm from './CreateReviewForm';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 

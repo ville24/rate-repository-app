@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-native';
 
-import useReview from '../hooks/useReview';
+import useReview from '../../hooks/useReview';
 import { useApolloClient } from '@apollo/client';
 import CreateReviewFormContainer from './CreateReviewFormContainer';
 
@@ -11,10 +11,10 @@ const CreateReviewForm = () => {
   const apolloClient = useApolloClient();
 
   const onSubmit = async (values) => {
-    const { ownerName, repositoryName, rating, review } = values;
+    const { ownerName, repositoryName, rating, text } = values;
         
     try {
-      const result = await createReview({ ownerName, repositoryName, rating, review });
+      const result = await createReview({ ownerName, repositoryName, rating: parseInt(rating), text });
       console.log(result);
       apolloClient.resetStore();
       navigate(`/${result.repositoryId}`);
@@ -23,7 +23,7 @@ const CreateReviewForm = () => {
     }
   };
 
-  return <CreateReviewFormContainer onSubmit={onSubmit} />;
+  return <CreateReviewFormContainer onSubmit={onSubmit}/>;
 };
 
 export default CreateReviewForm;

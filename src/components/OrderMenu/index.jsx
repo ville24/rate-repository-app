@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Button, Menu } from 'react-native-paper';
 
-import theme from '../theme';
+import theme from '../../theme';
 
 const styles = StyleSheet.create({
     menuContainer: {
@@ -12,17 +12,23 @@ const styles = StyleSheet.create({
     }
 });
 
-const OrderMenu = () => {
+const OrderMenu = ( { orderBy, orderDirection, handleOrder } ) => {
   const [visible, setVisible] = React.useState(false);
-  const [order, setOrder] = React.useState('Latest repositories');
+  const [order, setOrder] = React.useState('');
+
+  React.useEffect(() => {
+    if (orderBy === 'CREATED_AT') { setOrder('Latest repositories') };
+    if (orderBy === 'RATING_AVERAGE' && orderDirection === 'ASC') { setOrder('Lowest rated repositories') };
+    if (orderBy === 'RATING_AVERAGE' && orderDirection === 'DESC') { setOrder('Highest rated repositories') };
+  }, [orderBy, orderDirection])
 
   const openMenu = () => setVisible(true);
 
   const closeMenu = () => setVisible(false);
 
-  const handleMenu = (value) => {
-    setOrder(value);
+  const handleMenu = (orderByValue, orderByDirectionValue ) => {
     closeMenu();
+    handleOrder(orderByValue, orderByDirectionValue);
   }
 
   return <View
@@ -40,15 +46,15 @@ const OrderMenu = () => {
             contentStyle={{backgroundColor:'white'}}
         >
             <Menu.Item
-                onPress={()=>{handleMenu('Latest repositories')}} 
+                onPress={()=>{handleMenu('CREATED_AT', 'DESC')}} 
                 title="Latest repositories"
             />
             <Menu.Item
-                onPress={()=>{handleMenu('Highest rated repositories')}}
+                onPress={()=>{handleMenu('RATING_AVERAGE', 'DESC')}}
                 title="Highest rated repositories"
             />
             <Menu.Item
-                onPress={()=>{handleMenu('Lowest rated repositories')}}
+                onPress={()=>{handleMenu('RATING_AVERAGE', 'ASC')}}
                 title="Lowest rated repositories"
             />
         </Menu>

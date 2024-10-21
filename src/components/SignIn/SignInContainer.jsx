@@ -1,9 +1,9 @@
 import { View, TextInput, StyleSheet, Pressable } from 'react-native';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import Text from './Text';
+import Text from '../Text';
 
-import theme from '../theme';
+import theme from '../../theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -89,8 +89,8 @@ const SignInContainer = ({onSubmit}) => {
         )}
         </View>
         <Pressable 
-        style={styles.button}
-        onPress={formik.handleSubmit}
+          style={styles.button}
+          onPress={formik.handleSubmit}
         >
             <Text style={styles.text} fontWeight="bold" fontSize="subheading">Sign in</Text>
         </Pressable>

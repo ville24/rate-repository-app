@@ -1,9 +1,9 @@
 import { View, TextInput, StyleSheet, Pressable } from 'react-native';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import Text from './Text';
+import Text from '../Text';
 
-import theme from '../theme';
+import theme from '../../theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -46,7 +46,7 @@ const initialValues = {
     ownerName: '',
     repositoryName: '',
     rating: '',
-    review: '',
+    text: '',
   };
   
 const validationSchema = yup.object().shape({  
@@ -59,16 +59,18 @@ const validationSchema = yup.object().shape({
   rating: yup
   .number()
   .required('Rating is required'),
-  review: yup
+  text: yup
   .string(),
 });
-  
+
 const CreateReviewFormContainer = ({onSubmit}) => {
+  
   const formik = useFormik({
       initialValues,
       validationSchema,
       onSubmit,
   });
+  
 
   return <View style={styles.container}>
       <View style={styles.inputContainer}>
@@ -106,19 +108,19 @@ const CreateReviewFormContainer = ({onSubmit}) => {
       </View>
       <View style={styles.inputContainer}>
         <TextInput
-            style={formik.touched.review && formik.errors.review ? {...styles.input, ...styles.error}: styles.input}
+            style={formik.touched.text && formik.errors.text ? {...styles.input, ...styles.error}: styles.input}
             placeholder="Review"
-            value={formik.values.review}
-            onChangeText={formik.handleChange('review')}
+            value={formik.values.text}
+            onChangeText={formik.handleChange('text')}
             multiline
         ></TextInput>
-        {formik.touched.review && formik.errors.review && (
-            <Text style={styles.errorText}>{formik.errors.review}</Text>
+        {formik.touched.text && formik.errors.text && (
+            <Text style={styles.errorText}>{formik.errors.text}</Text>
         )}
       </View>
       <Pressable 
-      style={styles.button}
-      onPress={formik.handleSubmit}
+        style={styles.button}
+        onPress={formik.handleSubmit}
       >
           <Text style={styles.text} fontWeight="bold" fontSize="subheading">Create a review</Text>
       </Pressable>
