@@ -1,7 +1,8 @@
-import { View, TextInput, StyleSheet, Pressable } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import Text from '../Text';
+import TextInput from '../TextInput';
+import Button from '../Button';
 
 import theme from '../../theme';
 
@@ -9,36 +10,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.secondary,
     padding: theme.padding.default,
-  },
-  inputContainer: {
-    marginBottom: theme.padding.default,
-  },
-  input: {
-    color: theme.colors.secondaryLight,
-    padding: theme.padding.default,
-    marginBottom: theme.padding.small,
-    borderWidth: 1,
-    borderColor: theme.colors.secondaryLight,
-    borderRadius: 5,
-  },
-  error: {
-    borderColor: theme.colors.error,
-  },
-  errorText: {
-    color: theme.colors.error,
-  },
-  button: {
-    color: theme.colors.secondary,
-    padding: theme.padding.default,
-    marginBottom: theme.padding.default,
-    borderWidth: 1,
-    borderColor: theme.colors.primary,
-    borderRadius: 5,
-    backgroundColor: theme.colors.primary,
-  },
-  text: {
-    color: theme.colors.secondary,
-    textAlign: 'center',
   },
 });
 
@@ -73,57 +44,35 @@ const CreateReviewFormContainer = ({onSubmit}) => {
   
 
   return <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <TextInput
-            style={formik.touched.ownerName && formik.errors.ownerName ? {...styles.input, ...styles.error}: styles.input}
-            placeholder="Repository owner name"
-            value={formik.values.ownerName}
-            onChangeText={formik.handleChange('ownerName')}
-        ></TextInput>
-        {formik.touched.ownerName && formik.errors.ownerName && (
-            <Text style={styles.errorText}>{formik.errors.ownerName}</Text>
-        )}
-      </View>
-      <View style={styles.inputContainer}>
-        <TextInput
-            style={formik.touched.repositoryName && formik.errors.repositoryName ? {...styles.input, ...styles.error}: styles.input}
-            placeholder="Repository repositoryName"
-            value={formik.values.repositoryName}
-            onChangeText={formik.handleChange('repositoryName')}
-        ></TextInput>
-        {formik.touched.repositoryName && formik.errors.repositoryName && (
-            <Text style={styles.errorText}>{formik.errors.repositoryName}</Text>
-        )}
-      </View>
-      <View style={styles.inputContainer}>
-        <TextInput
-            style={formik.touched.rating && formik.errors.rating ? {...styles.input, ...styles.error}: styles.input}
-            placeholder="Rating between 0 and 100"
-            value={formik.values.rating}
-            onChangeText={formik.handleChange('rating')}
-        ></TextInput>
-        {formik.touched.rating && formik.errors.rating && (
-            <Text style={styles.errorText}>{formik.errors.rating}</Text>
-        )}
-      </View>
-      <View style={styles.inputContainer}>
-        <TextInput
-            style={formik.touched.text && formik.errors.text ? {...styles.input, ...styles.error}: styles.input}
-            placeholder="Review"
-            value={formik.values.text}
-            onChangeText={formik.handleChange('text')}
-            multiline
-        ></TextInput>
-        {formik.touched.text && formik.errors.text && (
-            <Text style={styles.errorText}>{formik.errors.text}</Text>
-        )}
-      </View>
-      <Pressable 
-        style={styles.button}
-        onPress={formik.handleSubmit}
-      >
-          <Text style={styles.text} fontWeight="bold" fontSize="subheading">Create a review</Text>
-      </Pressable>
+      <TextInput
+          placeholder='Repository owner name'
+          value={formik.values.ownerName}
+          handleChange={formik.handleChange('ownerName')}
+          touched={formik.touched.ownerName}
+          error={formik.errors.ownerName}
+      />
+      <TextInput
+          placeholder='Repository name'
+          value={formik.values.repositoryName}
+          handleChange={formik.handleChange('repositoryName')}
+          touched={formik.touched.repositoryName}
+          error={formik.errors.repositoryName}
+      />
+      <TextInput
+          placeholder='Rating between 0 and 100'
+          value={formik.values.rating}
+          handleChange={formik.handleChange('rating')}
+          touched={formik.touched.rating}
+          error={formik.errors.rating}
+      />
+      <TextInput
+          placeholder='Review'
+          value={formik.values.text}
+          handleChange={formik.handleChange('text')}
+          touched={formik.touched.text}
+          error={formik.errors.text}
+      />
+      <Button title='Create a review' handlePress={formik.handleSubmit} />
   </View>;
 };
 
