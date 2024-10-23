@@ -19,9 +19,9 @@ const styles = StyleSheet.create({
     },
 });
 
-const Button = ( { title, handlePress } ) => 
+const Button = ( { title, handlePress, color } ) => 
 <Pressable 
-    style={styles.button}
+    style={ color ? {...styles.button, backgroundColor: color, borderColor: color} : styles.button }
     onPress={handlePress}
 >
     <Text style={styles.text} fontWeight="bold" fontSize="subheading">{title}</Text>

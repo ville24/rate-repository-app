@@ -14,3 +14,16 @@ fragment CoreRepositoryFields on Repository {
     url
 }
 `;
+
+export const CORE_REVIEW_FIELDS = gql`
+fragment CoreReviewFields on Review {
+    id
+    rating
+    text
+    createdAt
+    user {
+        id
+        username
+    }
+}
+`;

@@ -8,6 +8,7 @@ import Description from './Description';
 import Tag from './Tag';
 import Count from './Count';
 import Text from '../Text';
+import Button from '../Button';
 
 import theme from '../../theme';
 
@@ -91,12 +92,13 @@ const Item = ({item, single}) => {
         </View>
         {
             single && 
-            <Pressable 
+            <><Pressable 
                 style={styles.button}
                 onPress={handleLink}
             >
                 <Text style={styles.text} fontWeight="bold" fontSize="subheading">Open in GitHub</Text>
             </Pressable>
+            <Button title='Open in GitHub' handlePress={handleLink} /></>
         }
     </View>
 };
