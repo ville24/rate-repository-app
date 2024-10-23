@@ -15,9 +15,8 @@ const CreateReviewForm = () => {
         
     try {
       const result = await createReview({ ownerName, repositoryName, rating: parseInt(rating), text });
-      console.log(result);
       apolloClient.resetStore();
-      navigate(`/${result.repositoryId}`);
+      navigate(`/${result.data.createReview.repositoryId}`);
     } catch (e) {
       console.log(e);
     }
