@@ -15,38 +15,6 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-/*export const RepositoryListContainer = ({ repositories, orderBy, orderDirection, handleOrder, filter, handleFilter }) => {
-  const repositoryNodes = repositories
-    ? repositories.edges.map(edge => edge.node)
-    : [];
-
-  return (
-    <PaperProvider>
-      <FlatList
-            data={repositoryNodes}
-            ItemSeparatorComponent={ItemSeparator}
-            renderItem={({item}) => (     
-                <RepositoryItem key={item.id} item={item}></RepositoryItem>
-            )}
-            ListHeaderComponent={() => <>
-              <FilterMenu
-                filter={filter}
-                handleFilter={handleFilter}
-              ></FilterMenu>
-              <OrderMenu 
-                orderBy={orderBy}
-                orderDirection={orderDirection}
-                handleOrder={handleOrder}
-              />
-            </>}
-        />
-    </PaperProvider>
-  );
-
-};
-
-export default RepositoryListContainer;*/
-
 export default class RepositoryListContainer extends React.Component {
   renderHeader = () => {
     const props = this.props;

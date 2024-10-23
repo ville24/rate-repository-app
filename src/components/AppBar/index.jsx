@@ -26,7 +26,7 @@ const AppBar = () => {
         !me && <AppBarTab text='Sign in' link='/signin'></AppBarTab>
       }
       {
-        !me && <>
+        me && <>
             <AppBarTab text='Create a review' link='/createreview'></AppBarTab>
             <AppBarTab text='My reviews' link='/myreviews'></AppBarTab>
             <AppBarTab text='Sign out' link='/signout'></AppBarTab>

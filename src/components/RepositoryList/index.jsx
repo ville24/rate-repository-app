@@ -16,7 +16,6 @@ const RepositoryList = () => {
   const { repositories } = useRepositories(orderBy, orderDirection, filter);
 
   const handleFilter = (value) => {
-    console.log(value);
     setFilter(value);
   };
 

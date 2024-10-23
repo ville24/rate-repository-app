@@ -21,6 +21,7 @@ fragment CoreReviewFields on Review {
     rating
     text
     createdAt
+    repositoryId
     user {
         id
         username

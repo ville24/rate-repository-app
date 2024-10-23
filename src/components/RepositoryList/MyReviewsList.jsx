@@ -3,16 +3,16 @@ import ReviewItem from './ReviewItem';
 import useMe from '../../hooks/useMe';
 
 const MyReviewsList = () => {
-    const { me } = useMe(true);
+    const { me, refetch } = useMe(true);
     
-    const reviews = me
+    const reviews = me && me.reviews
     ? me.reviews.edges.map(edge => edge.node)
     : [];
 
     return (
         <FlatList
             data={reviews}
-            renderItem={({ item }) => <ReviewItem review={item} my />}
+            renderItem={({ item }) => <ReviewItem review={item} my refetch={refetch} />}
             keyExtractor={({ id }) => id}
         />
     );

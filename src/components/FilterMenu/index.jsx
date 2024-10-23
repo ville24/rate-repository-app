@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Searchbar } from 'react-native-paper';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useDebounce } from 'use-debounce';
 
 import theme from '../../theme';
@@ -8,6 +8,7 @@ import theme from '../../theme';
 const styles = StyleSheet.create({
     menuContainer: {
         padding: theme.padding.default,
+        paddingBottom: 0,
     }
 });
 
@@ -27,8 +28,6 @@ const FilterMenu = ( { filter, handleFilter } ) => {
             value={searchQuery}
             style={{backgroundColor:'white'}}
         />
-        <Text>Actual value: {searchQuery}</Text>
-        <Text>Debounce value: {value}</Text>
     </View>;
 };
 

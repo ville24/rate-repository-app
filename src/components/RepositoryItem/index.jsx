@@ -7,7 +7,6 @@ import Title from './Title';
 import Description from './Description';
 import Tag from './Tag';
 import Count from './Count';
-import Text from '../Text';
 import Button from '../Button';
 
 import theme from '../../theme';
@@ -31,19 +30,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
     },
-    button: {
-        color: theme.colors.secondary,
-        padding: theme.padding.default,
-        marginTop: theme.padding.default,
-        marginBottom: theme.padding.default,
-        borderWidth: 1,
-        borderColor: theme.colors.primary,
-        borderRadius: 5,
-        backgroundColor: theme.colors.primary,
-    },
-        text: {
-        color: theme.colors.secondary,
-        textAlign: 'center',
+    containerButton: {
+        paddingTop: theme.padding.default,
     },
 });
 
@@ -92,13 +80,9 @@ const Item = ({item, single}) => {
         </View>
         {
             single && 
-            <><Pressable 
-                style={styles.button}
-                onPress={handleLink}
-            >
-                <Text style={styles.text} fontWeight="bold" fontSize="subheading">Open in GitHub</Text>
-            </Pressable>
-            <Button title='Open in GitHub' handlePress={handleLink} /></>
+                <View style={styles.containerButton}>
+                    <Button title='Open in GitHub' handlePress={handleLink} />
+                </View>
         }
     </View>
 };
