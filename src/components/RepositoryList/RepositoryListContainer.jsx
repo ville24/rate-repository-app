@@ -22,8 +22,8 @@ export default class RepositoryListContainer extends React.Component {
     return (
       <>
         <FilterMenu
-          filter={props.filter}
-          handleFilter={props.handleFilter}
+          filter={props.searchKeyword}
+          handleSearch={props.handleSearch}
         ></FilterMenu>
         <OrderMenu 
           orderBy={props.orderBy}

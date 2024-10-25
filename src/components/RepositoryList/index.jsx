@@ -6,17 +6,21 @@ import useRepositories from '../../hooks/useRepositories';
 const RepositoryList = () => {
   const [orderBy, setOrderBy] = React.useState('CREATED_AT');
   const [orderDirection, setOrderDirection] = React.useState('DESC');
-  const [filter, setFilter] = React.useState('');
+  const [searchKeyword, setSearchKeyword] = React.useState('');
 
   const handleOrder = (orderByValue, orderDirectionValue) => {
     setOrderBy(orderByValue);
     setOrderDirection(orderDirectionValue);
   };
 
-  const { repositories } = useRepositories(orderBy, orderDirection, filter);
+  const { repositories, fetchMore } = useRepositories( { orderBy, orderDirection, searchKeyword, first: 3 } );
 
-  const handleFilter = (value) => {
-    setFilter(value);
+  const handleSearch = (value) => {
+    setSearchKeyword(value);
+  };
+
+  const onEndReach = () => {
+    fetchMore();
   };
 
   return <RepositoryListContainer 
@@ -24,8 +28,9 @@ const RepositoryList = () => {
     orderBy={orderBy}
     orderDirection={orderDirection}
     handleOrder={handleOrder}
-    filter={filter}
-    handleFilter={handleFilter}
+    searchKeyword={searchKeyword}
+    handleSearch={handleSearch}
+    onEndReach={onEndReach}
   />;
 };
 

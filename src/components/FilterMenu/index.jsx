@@ -12,12 +12,12 @@ const styles = StyleSheet.create({
     }
 });
 
-const FilterMenu = ( { filter, handleFilter } ) => {
+const FilterMenu = ( { filter, handleSearch } ) => {
     const [searchQuery, setSearchQuery] = React.useState(filter);
     const [value] = useDebounce(searchQuery, 500);    
 
     React.useEffect(() => {
-        handleFilter(value);
+        handleSearch(value);
     },[value]);
 
     return <View
