@@ -44,13 +44,15 @@ export default class RepositoryListContainer extends React.Component {
     return (
       <PaperProvider>
         <FlatList
-              data={repositoryNodes}
-              ItemSeparatorComponent={ItemSeparator}
-              renderItem={({item}) => (     
-                  <RepositoryItem key={item.id} item={item}></RepositoryItem>
-              )}
-              ListHeaderComponent={this.renderHeader}
-          />
+          data={repositoryNodes}
+          ItemSeparatorComponent={ItemSeparator}
+          renderItem={({item}) => (     
+            <RepositoryItem key={item.id} item={item}></RepositoryItem>
+          )}
+          ListHeaderComponent={this.renderHeader}
+          onEndReached={(props.onEndReached)}
+          onEndReachedThreshold={props.onEndReachedThreshold}
+        />
       </PaperProvider>
     );
   }

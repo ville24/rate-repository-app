@@ -19,7 +19,7 @@ const RepositoryList = () => {
     setSearchKeyword(value);
   };
 
-  const onEndReach = () => {
+  const onEndReached = () => {
     fetchMore();
   };
 
@@ -30,7 +30,8 @@ const RepositoryList = () => {
     handleOrder={handleOrder}
     searchKeyword={searchKeyword}
     handleSearch={handleSearch}
-    onEndReach={onEndReach}
+    onEndReached={onEndReached}
+    onEndReachedThreshold={0.5}
   />;
 };
 

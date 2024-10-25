@@ -15,7 +15,7 @@ const RepositorySingleItem = () => {
     ? repository.reviews.edges.map(edge => edge.node)
     : [];
 
-    const onEndReach = () => {
+    const onEndReached = () => {
       fetchMore();
     };
 
@@ -25,7 +25,7 @@ const RepositorySingleItem = () => {
           renderItem={({ item }) => <ReviewItem review={item} />}
           keyExtractor={({ id }) => id}
           ListHeaderComponent={() => <RepositoryItem item={item} single></RepositoryItem>}
-          onEndReach={onEndReach}
+          onEndReached={onEndReached}
         />
     );
 };
